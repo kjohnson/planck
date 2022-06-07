@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.c543057e.css",
-    "main.js": "./static/js/main.e11959e9.js",
+    "main.js": "./static/js/main.8e31a59d.js",
     "static/js/787.6d307ced.chunk.js": "./static/js/787.6d307ced.chunk.js",
     "static/media/complete.wav": "./static/media/complete.b1c9cd0c24141688064c.wav",
     "static/media/confirm.wav": "./static/media/confirm.b3bf9bdc15eabc8cb26f.wav",
@@ -24,6 +24,7 @@
     "static/media/b.png": "./static/media/b.9cb0c620b7b2e57c7ae1.png",
     "static/media/k.png": "./static/media/k.0e3809c30452e8847764.png",
     "static/media/mute.png": "./static/media/mute.f2b0003b8d4eb087f2db.png",
+    "static/media/keyboard-button.png": "./static/media/keyboard-button.f0d7307f4411838b05de.png",
     "static/media/m.png": "./static/media/m.95ef718b90acfcb2d0eb.png",
     "static/media/d.png": "./static/media/d.60e4f6f35d6cb2f16430.png",
     "static/media/v.png": "./static/media/v.cf2226444ff72a5ea200.png",
@@ -37,11 +38,11 @@
     "static/media/beep.mp3": "./static/media/beep.f7879469b7f4b091d0cd.mp3",
     "index.html": "./index.html",
     "main.c543057e.css.map": "./static/css/main.c543057e.css.map",
-    "main.e11959e9.js.map": "./static/js/main.e11959e9.js.map",
+    "main.8e31a59d.js.map": "./static/js/main.8e31a59d.js.map",
     "787.6d307ced.chunk.js.map": "./static/js/787.6d307ced.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c543057e.css",
-    "static/js/main.e11959e9.js"
+    "static/js/main.8e31a59d.js"
   ]
 }
