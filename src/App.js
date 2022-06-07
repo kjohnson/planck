@@ -15,21 +15,28 @@ function App() {
 
     const formatTargetName = ( text ) => text.toLowerCase().split('')
 
-    const [ targetName, setTargetName ] = useState( formatTargetName('planck') );
+    const [ targetName, setTargetName ] = useState( formatTargetName('planck' ) );
     const [ progress, setProgress ] = useState('');
 
+    const resetProgress = () => {
+        setProgress('')
+    }
+
+    const updateTargetName = ( text ) => {
+        setTargetName( formatTargetName( text ) )
+        resetProgress()
+    }
+
     const nextLetter = [...targetName].splice( 0, progress.length + 1 ).pop();
-    console.log( 'NEXT: ' + nextLetter )
 
     if( targetName.length === progress.length ) {
         // complete.play();
         setTimeout(() => {
-            setProgress('')
+            resetProgress()
         }, 6000 )
     }
 
     useKeypress('abcdefghijklmnopqrstuvwxyz'.split(''), (event) => {
-        console.log( 'Keypress: ' + event.key)
         if ( event.key === nextLetter && targetName.length !== progress.length ) {
             setProgress(progress + nextLetter)
             confirm.play()
@@ -54,7 +61,7 @@ function App() {
           />)}
           <div style={{position:'fixed', right:'20px', bottom:'20px'}}>
                 <button style={{border:0,backgroundColor:"transparent"}} onClick={() => {
-                    setTargetName( formatTargetName( window.prompt('Enter a word')))
+                    updateTargetName( window.prompt('Enter a word') )
                 }}>
                     <img style={{width: '50px'}} src={require('./images/alphabet/lineal/alphabet.png')} />
                 </button>
