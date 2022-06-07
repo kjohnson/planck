@@ -7,7 +7,7 @@ import { useWindowSize } from '@react-hook/window-size'
 import UIfx from 'uifx'
 const beep = new UIfx(require('./audio/beep.mp3'))
 const confirm = new UIfx(require('./audio/confirm.wav'))
-const complete = new UIfx(require('./audio/complete.wav'))
+const complete = new UIfx(require('./audio/tada.flac'))
 
 import './App.css';
 
@@ -35,7 +35,6 @@ function App() {
     const nextLetter = [...targetName].splice( 0, progress.length + 1 ).pop();
 
     if( targetName.length === progress.length ) {
-        // playfx( complete );
         setTimeout(() => {
             resetProgress()
         }, 6000 )
@@ -43,8 +42,12 @@ function App() {
 
     useKeypress('abcdefghijklmnopqrstuvwxyz'.split(''), (event) => {
         if ( event.key === nextLetter && targetName.length !== progress.length ) {
+            if( progress.length === targetName.length - 1 ) {
+                playfx( complete );
+            } else {
+                playfx( confirm )
+            }
             setProgress(progress + nextLetter)
-            playfx( confirm )
         } else {
             playfx( beep )
         }
