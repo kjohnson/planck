@@ -63,7 +63,10 @@ function App() {
                 <button style={{border:0,backgroundColor:"transparent"}} onClick={() => {
                     updateTargetName( window.prompt('Enter a word') )
                 }}>
-                    <img style={{width: '50px'}} src={require('./images/alphabet/lineal/alphabet.png')} />
+                    <img style={{width: '50px'}} src={require('./images/alphabet/lineal/alphabet.png')}
+                         onMouseOver={e => e.currentTarget.src = require('./images/alphabet/lineal-color/alphabet.png')}
+                         onMouseLeave={e => e.currentTarget.src = require('./images/alphabet/lineal/alphabet.png')}
+                    />
                 </button>
           </div>
       </>
