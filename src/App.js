@@ -13,6 +13,11 @@ import './App.css';
 
 function App() {
 
+    const [ isAudioEnabled, setAudioEnabled ] = useState( true )
+    const playfx = ( uifx ) => {
+        if( isAudioEnabled ) uifx.play()
+    }
+
     const formatTargetName = ( text ) => text.toLowerCase().split('')
 
     const [ targetName, setTargetName ] = useState( formatTargetName('planck' ) );
@@ -30,7 +35,7 @@ function App() {
     const nextLetter = [...targetName].splice( 0, progress.length + 1 ).pop();
 
     if( targetName.length === progress.length ) {
-        // complete.play();
+        // playfx( complete );
         setTimeout(() => {
             resetProgress()
         }, 6000 )
@@ -39,9 +44,9 @@ function App() {
     useKeypress('abcdefghijklmnopqrstuvwxyz'.split(''), (event) => {
         if ( event.key === nextLetter && targetName.length !== progress.length ) {
             setProgress(progress + nextLetter)
-            confirm.play()
+            playfx( confirm )
         } else {
-            beep.play()
+            playfx( beep )
         }
     })
 
@@ -59,8 +64,22 @@ function App() {
               width={width}
               height={height}
           />)}
+
+          <div style={{position:'fixed', right:'20px', top:'20px'}}>
+              <button style={{border:0,backgroundColor:"transparent", cursor: "pointer"}} onClick={() => {
+                  setAudioEnabled( ! isAudioEnabled )
+              }}>
+                  { ! isAudioEnabled && (
+                      <img style={{width: '50px'}} src={require('./images/alphabet/lineal-color/mute.png')} />
+                  )}
+                  { !! isAudioEnabled && (
+                      <img style={{width: '50px'}} src={require('./images/alphabet/lineal/mute.png')} />
+                  )}
+              </button>
+          </div>
+
           <div style={{position:'fixed', right:'20px', bottom:'20px'}}>
-                <button style={{border:0,backgroundColor:"transparent"}} onClick={() => {
+                <button style={{border:0,backgroundColor:"transparent", cursor: "pointer"}} onClick={() => {
                     updateTargetName( window.prompt('Enter a word') )
                 }}>
                     <img style={{width: '50px'}} src={require('./images/alphabet/lineal/alphabet.png')}
@@ -68,6 +87,17 @@ function App() {
                          onMouseLeave={e => e.currentTarget.src = require('./images/alphabet/lineal/alphabet.png')}
                     />
                 </button>
+          </div>
+
+          <div style={{position:'fixed', left:'20px', bottom:'20px'}}>
+              <button style={{border:0,backgroundColor:"transparent", cursor: "pointer"}} onClick={() => {
+                  resetProgress()
+              }}>
+                  <img style={{width: '50px'}} src={require('./images/alphabet/lineal/refresh.png')}
+                       onMouseOver={e => e.currentTarget.src = require('./images/alphabet/lineal-color/refresh.png')}
+                       onMouseLeave={e => e.currentTarget.src = require('./images/alphabet/lineal/refresh.png')}
+                  />
+              </button>
           </div>
       </>
   );
