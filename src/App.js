@@ -21,9 +21,12 @@ function App() {
     const nextLetter = [...targetName].splice( 0, progress.length + 1 ).pop();
     console.log( 'NEXT: ' + nextLetter )
 
-    // if( targetName.length === progress.length ) {
-    //     complete.play();
-    // }
+    if( targetName.length === progress.length ) {
+        // complete.play();
+        setTimeout(() => {
+            setProgress('')
+        }, 6000 )
+    }
 
     useKeypress('abcdefghijklmnopqrstuvwxyz'.split(''), (event) => {
         console.log( 'Keypress: ' + event.key)
