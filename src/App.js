@@ -11,6 +11,8 @@ const complete = new UIfx(require('./audio/tada.flac'))
 
 import './App.css';
 
+const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('')
+
 function App() {
 
     const [ isAudioEnabled, setAudioEnabled ] = useState( true )
@@ -18,7 +20,9 @@ function App() {
         if( isAudioEnabled ) uifx.play()
     }
 
-    const formatTargetName = ( text ) => text.toLowerCase().split('')
+    const formatTargetName = ( text ) => text.toLowerCase().split('').filter(( letter ) => {
+        return ALPHABET.includes( letter )
+    })
 
     const [ targetName, setTargetName ] = useState( formatTargetName('planck' ) );
     const [ progress, setProgress ] = useState('');
@@ -40,7 +44,7 @@ function App() {
         }, 6000 )
     }
 
-    useKeypress('abcdefghijklmnopqrstuvwxyz'.split(''), (event) => {
+    useKeypress( ALPHABET, (event) => {
         if ( event.key === nextLetter && targetName.length !== progress.length ) {
             if( progress.length === targetName.length - 1 ) {
                 playfx( complete );
